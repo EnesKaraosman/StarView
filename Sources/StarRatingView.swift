@@ -9,14 +9,30 @@ import SwiftUI
 
 public struct StarRatingView: View {
     
-    public let starCount: Int
-    public let totalPercentage: CGFloat
+    public struct Style {
+        
+        public let fillColor: Color
+        public let lineWidth: CGFloat
+        public let borderColor: Color
+        
+        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0) {
+            self.fillColor = fillColor
+            self.borderColor = borderColor
+            self.lineWidth = borderWidth
+        }
+        
+    }
     
+    private let starCount: Int
+    private let totalPercentage: CGFloat
+    private let style: Style
+
     private var percantageList: [CGFloat] = []
     
-    public init(starCount: Int = 5, totalPercentage: CGFloat) {
+    public init(starCount: Int = 5, totalPercentage: CGFloat, style: Style) {
         self.starCount = starCount
         self.totalPercentage = totalPercentage
+        self.style = style
         self.percantageList = self.calculatePercantageList(
             starCount: starCount,
             totalPercentage: totalPercentage
@@ -50,7 +66,12 @@ public struct StarRatingView: View {
         HStack {
             ForEach(0..<starCount) { idx in
                 StarView(
-                    fillPercentage: self.percantageList[idx]
+                    percentage: self.percantageList[idx],
+                    style: Style(
+                        fillColor: self.style.fillColor,
+                        borderColor: self.style.borderColor,
+                        borderWidth: self.style.lineWidth
+                    )
                 )
             }
         }

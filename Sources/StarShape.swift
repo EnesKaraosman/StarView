@@ -32,11 +32,3 @@ public struct StarShape: Shape {
     }
     
 }
-
-//struct StarShape_Preview: PreviewProvider {
-//    static var previews: some View {
-//        StarShape()
-//            .stroke(Color.red, style: .init())
-//            .frame(width: 50, height: 50)
-//    }
-//}
