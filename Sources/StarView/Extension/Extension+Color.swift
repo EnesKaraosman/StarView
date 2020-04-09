@@ -8,5 +8,5 @@
 import struct SwiftUI.Color
 
 public extension Color {
-    static let starYellow = Color(red: 255 / 255, green: 211 / 255, blue: 29)
+    static let starYellow = Color(red: 245 / 255, green: 189 / 255, blue: 81 / 255)
 }

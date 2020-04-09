@@ -8,7 +8,7 @@ public struct StarView: View {
         public let lineWidth: CGFloat
         public let borderColor: Color
         
-        public init(fillColor: Color = .yellow, borderColor: Color = .yellow, borderWidth: CGFloat = 4.0) {
+        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0) {
             self.fillColor = fillColor
             self.borderColor = borderColor
             self.lineWidth = borderWidth
@@ -18,7 +18,7 @@ public struct StarView: View {
     private let style: Style
     private let fillPercentage: CGFloat
     
-    public init(percentage: CGFloat, style: Style) {
+    public init(percentage: CGFloat, style: Style = .init()) {
         self.fillPercentage = percentage
         self.style = style
     }

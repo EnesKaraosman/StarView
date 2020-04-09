@@ -29,7 +29,7 @@ public struct StarRatingView: View {
 
     private var percantageList: [CGFloat] = []
     
-    public init(starCount: Int = 5, totalPercentage: CGFloat, style: Style) {
+    public init(starCount: Int = 5, totalPercentage: CGFloat, style: Style = .init()) {
         self.starCount = starCount
         self.totalPercentage = totalPercentage
         self.style = style
