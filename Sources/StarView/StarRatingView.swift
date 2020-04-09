@@ -13,12 +13,14 @@ public struct StarRatingView: View {
         
         public let fillColor: Color
         public let lineWidth: CGFloat
+        public let spacing: CGFloat
         public let borderColor: Color
         
-        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0) {
+        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0, spacing: CGFloat = 0) {
             self.fillColor = fillColor
             self.borderColor = borderColor
             self.lineWidth = borderWidth
+            self.spacing = spacing
         }
         
     }
@@ -63,7 +65,7 @@ public struct StarRatingView: View {
     }
     
     public var body: some View {
-        HStack {
+        HStack(spacing: self.style.spacing) {
             ForEach(0..<starCount) { idx in
                 StarView(
                     percentage: self.percantageList[idx],
