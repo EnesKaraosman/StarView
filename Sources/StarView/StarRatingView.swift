@@ -67,7 +67,7 @@ public struct StarRatingView: View {
             ForEach(0..<starCount) { idx in
                 StarView(
                     percentage: self.percantageList[idx],
-                    style: Style(
+                    style: StarView.Style(
                         fillColor: self.style.fillColor,
                         borderColor: self.style.borderColor,
                         borderWidth: self.style.lineWidth
