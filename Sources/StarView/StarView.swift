@@ -7,6 +7,13 @@ public struct StarView: View {
     public var lineWidth: CGFloat = 4.0
     public var borderColor: Color = .yellow
     public var fillPercentage: CGFloat
+    
+    public init(fillColor: Color, borderColor: Color, borderWidth: CGFloat, percentage: CGFloat) {
+        self.fillColor = fillColor
+        self.borderColor = borderColor
+        self.lineWidth = borderWidth
+        self.fillPercentage = percentage
+    }
         
     func needsToBeFilledWidth(totalWidth: CGFloat) -> CGFloat {
         return totalWidth * (100 - fillPercentage) / 100
