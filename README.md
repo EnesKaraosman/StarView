@@ -60,15 +60,16 @@ GeometryReader { geometry in
         .padding()
         .gesture(
             DragGesture().onChanged({ (value) in
-                let width = geometry.size.width
+                let width = geometry.size.width - 20 // Padding safety
                 let currentX = value.location.x
-                let newPerc = 100 * currentX / width
-                self.fillPercentage = newPerc
+                var newPercentage = 100 * currentX / width
+                newPercentage = max(0, newPercentage) // Lowerbound safety
+                newPercentage = min(100, newPercentage) // Upperbound safety
+                self.fillPercentage = newPercentage
             })
         )
 }
 ```
-Note: Lower & Upperbounds might be a bit tricky, due to paddings
 
 ![](https://github.com/EnesKaraosman/StarView/blob/master/Sources/StarView/with-drag-gesture.gif)
 
