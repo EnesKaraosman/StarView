@@ -13,14 +13,18 @@ public struct StarRatingView: View {
         
         public let fillColor: Color
         public let lineWidth: CGFloat
-        public let spacing: CGFloat
         public let borderColor: Color
+        public let starExtrusion: CGFloat
         
-        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0, spacing: CGFloat = 0) {
+        public init(
+            fillColor: Color = .starYellow,
+            borderColor: Color = .starYellow,
+            borderWidth: CGFloat = 4,
+            starExtrusion: CGFloat = 20) {
             self.fillColor = fillColor
             self.borderColor = borderColor
             self.lineWidth = borderWidth
-            self.spacing = spacing
+            self.starExtrusion = starExtrusion
         }
         
     }
@@ -65,14 +69,15 @@ public struct StarRatingView: View {
     }
     
     public var body: some View {
-        HStack(spacing: self.style.spacing) {
+        HStack {
             ForEach(0..<starCount) { idx in
                 StarView(
                     percentage: self.percantageList[idx],
                     style: StarView.Style(
                         fillColor: self.style.fillColor,
                         borderColor: self.style.borderColor,
-                        borderWidth: self.style.lineWidth
+                        borderWidth: self.style.lineWidth,
+                        starExtrusion: self.style.starExtrusion
                     )
                 )
             }
