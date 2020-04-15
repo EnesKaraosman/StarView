@@ -16,7 +16,7 @@ public struct StarView: View {
     }
     
     private let style: Style
-    private let fillPercentage: CGFloat
+    private var fillPercentage: CGFloat
     
     private var animatableData: Double {
         get {
