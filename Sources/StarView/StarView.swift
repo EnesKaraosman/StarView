@@ -7,11 +7,18 @@ public struct StarView: View {
         public let fillColor: Color
         public let lineWidth: CGFloat
         public let borderColor: Color
+        public let starExtrusion: CGFloat
         
-        public init(fillColor: Color = .starYellow, borderColor: Color = .starYellow, borderWidth: CGFloat = 4.0) {
+        public init(
+            fillColor: Color = .starYellow,
+            borderColor: Color = .starYellow,
+            borderWidth: CGFloat = 4,
+            starExtrusion: CGFloat = 20
+        ) {
             self.fillColor = fillColor
             self.borderColor = borderColor
             self.lineWidth = borderWidth
+            self.starExtrusion = starExtrusion
         }
     }
     
@@ -32,19 +39,21 @@ public struct StarView: View {
         self.style = style
     }
         
-    func needsToBeFilledWidth(totalWidth: CGFloat) -> CGFloat {
+    private func needsToBeFilledWidth(totalWidth: CGFloat) -> CGFloat {
         return totalWidth * (100 - fillPercentage) / 100
     }
     
     public var body: some View {
         GeometryReader { geometry in
-            StarShape()
+            StarShape(starExtrusion: self.style.starExtrusion)
                 .stroke(self.style.borderColor, lineWidth: self.style.lineWidth)
                 .overlay(
                     Rectangle()
                         .foregroundColor(self.style.fillColor)
                         .offset(x: -self.needsToBeFilledWidth(totalWidth: geometry.size.width))
-                        .clipShape(StarShape(), style: .init())
+                        .clipShape(
+                            StarShape(starExtrusion: self.style.starExtrusion)
+                        )
                 )
                 
         }

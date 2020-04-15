@@ -9,14 +9,14 @@ import SwiftUI
 
 public struct StarShape: Shape {
     
+    public var starExtrusion: CGFloat = 20.0
+    
     private func pointFrom(angle: CGFloat, radius: CGFloat, offset: CGPoint) -> CGPoint {
         return CGPoint(x: radius * cos(angle) + offset.x, y: radius * sin(angle) + offset.y)
     }
     
     public func path(in rect: CGRect) -> Path {
         var path = Path()
-
-        let starExtrusion: CGFloat = 20.0
 
         let center = CGPoint(x: rect.midX, y: rect.midY)
 
