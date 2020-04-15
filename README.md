@@ -54,8 +54,13 @@ let spacing: CGFloat // For StarRatingView
 You can also add DragGesture to `StarRatingView` to take user's feedback. 
 
 ```swift
+
+@State private var progress: CGFloat = 20
+
+// ..
+
 GeometryReader { geometry in 
-    StarRatingView(starCount: 5, totalPercentage: self.fillPercentage)
+    StarRatingView(starCount: 5, totalPercentage: self.progress)
         .frame(height: 60)
         .padding()
         .gesture(
@@ -65,7 +70,7 @@ GeometryReader { geometry in
                 var newPercentage = 100 * currentX / width
                 newPercentage = max(0, newPercentage) // Lowerbound safety
                 newPercentage = min(100, newPercentage) // Upperbound safety
-                self.fillPercentage = newPercentage
+                self.progress = newPercentage
             })
         )
 }
@@ -76,34 +81,42 @@ GeometryReader { geometry in
 ### Full example
 ```swift
 
-@State private var totalPercentage: CGFloat = 20
+import StarView
 
-var body: some View {
-    VStack(alignment: .leading) {
+struct ContentView: View {
 
-        Spacer()
-        Text("Individual Star View").font(.title)
-        
-        StarView(percentage: 50, style: .init())
-            .frame(width: 60, height: 50)
-        
-        Spacer()
-        Divider().padding()
-        Spacer()
-        
-        Text("Rating View").font(.title)
+    @State private var progress: CGFloat = 20
 
-        StarRatingView(starCount: 5, totalPercentage: totalPercentage)
-            .frame(height: 60)
+    var body: some View {
         
-        Slider(value: $fillPercentage, in: 0...100) {
-            Text("Fill Percantage")
-        }.padding(.top, 24)
-        
-        Spacer()
+        VStack(alignment: .leading) {
+
+            Spacer()
+            Text("Individual Star View").font(.title)
+
+            StarView(percentage: progress, style: .init(starExtrusion: 15))
+                .frame(width: 70, height: 70)
+
+            Spacer()
+            Divider().padding()
+            Spacer()
+
+            Text("Rating View").font(.title)
+
+            StarRatingView(starCount: 5, totalPercentage: progress, style: .init(starExtrusion: 15))
+                .frame(width: 360, height: 60)
+
+            Slider(value: $progress, in: 0...100) {
+                Text("Fill Percantage")
+            }.padding(.top, 24)
+
+            Spacer()
+
+        }
+        .padding()
         
     }
-    .padding()
+
 }
 
 ```
