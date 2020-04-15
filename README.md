@@ -46,7 +46,7 @@ Pass `style` parameter in constructor.
 let fillColor: Color
 let borderWidth: CGFloat
 let borderColor: Color
-let spacing: CGFloat // For StarRatingView
+let starExtrusion: CGFloat
 ```
 
 ### Extra
