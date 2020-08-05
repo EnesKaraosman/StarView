@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-public struct StarView: View {
+public struct StarView: Animatable, View {
     
     public struct Style {
         public let fillColor: Color
@@ -25,7 +25,7 @@ public struct StarView: View {
     private let style: Style
     private var fillPercentage: CGFloat
     
-    private var animatableData: Double {
+    public var animatableData: Double {
         get {
             return Double(fillPercentage)
         }
